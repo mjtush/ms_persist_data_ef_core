@@ -1,5 +1,6 @@
 using ContosoPizza.Services;
 // Additional using declarations
+using ContosoPizza.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add the PizzaContext
+/* for network databases like PostgreSQL or SQL Server, you should always store 
+your connection strings securely. For local development, use Secret Manager. 
+For production deployments, consider a service like Azure Key Vault.*/
+builder.Services.AddSqlite<PizzaContext>("Data Source=ContosoPizza.db");
 
 // Add the PromotionsContext
 
